@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import console from 'console';
 
 @Controller('post')
 export class PostController {
@@ -9,6 +10,7 @@ export class PostController {
 
   @Post()
   create(@Body() createPostDto: CreatePostDto) {
+    
     return this.postService.create(createPostDto);
   }
 

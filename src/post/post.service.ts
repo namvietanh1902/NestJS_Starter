@@ -10,8 +10,9 @@ export class PostService {
     @InjectRepository(Post)
     private postRepository: Repository<Post>
   ){}
-  create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+  create(createPostDto: CreatePostDto):Promise<Post> {
+    console.log(createPostDto);
+    return this.postRepository.save(createPostDto);
   }
 
   findAll() :Promise<Post[]> {
