@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {InjectDataSource, TypeOrmModule } from '@nestjs/typeorm';
-import { Post } from './post/entities/post.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostModule } from './post/post.module';
-import {DataSource} from 'typeorm';
+
 import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
-import {config} from './config/ormconfig'
-export const connectionSource = new DataSource(config);
+import {config} from './database/ormconfig'
+import { CommentsModule } from './comments/comments.module';
+
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(config),
     PostModule,
-    UsersModule
+    UsersModule,
+    CommentsModule
     
   ],
   controllers: [AppController],
