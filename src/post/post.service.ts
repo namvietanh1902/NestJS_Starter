@@ -11,8 +11,8 @@ export class PostService {
     private postRepository: Repository<Post>
   ){}
   create(createPostDto: CreatePostDto):Promise<Post> {
-    console.log(createPostDto);
-    return this.postRepository.save(createPostDto);
+    const post:Post = this.postRepository.create(createPostDto);
+    return this.postRepository.save(post);
   }
 
   findAll() :Promise<Post[]> {

@@ -3,7 +3,7 @@ export const connectionSource = new DataSource({
   migrationsTableName: 'migrations',
   type: 'mysql',
   host: 'localhost',
-  port: 336,
+  port: 3306,
   username: 'root',
   password: '',
   database: 'nest_starter',
