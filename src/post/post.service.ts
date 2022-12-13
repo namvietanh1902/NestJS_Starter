@@ -30,7 +30,7 @@ export class PostService {
   }
 
   async update(id: number, updatePostDto: UpdatePostDto) {
-    let post = await this.postRepository.create(updatePostDto);
+    let post = this.postRepository.create(updatePostDto);
     const user = await this.userService.findOne(updatePostDto.userId);
     post.user = user;
     return this.postRepository.update({id},post)

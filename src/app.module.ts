@@ -8,7 +8,7 @@ import {DataSource} from 'typeorm';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import {config} from './config/ormconfig'
-
+export const connectionSource = new DataSource(config);
 
 @Module({
   imports: [
