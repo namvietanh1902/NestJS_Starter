@@ -12,20 +12,27 @@ export class UsersService {
     private userRepository: Repository<User>
   ){
   }
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  create(createUserDto: CreateUserDto) : Promise<User>{
+    return this.userRepository.save(createUserDto);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  findAll(): Promise<User[]> {
+    return this.userRepository.find({
+      relations:['posts']
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: number):Promise<User> {
+    return this.userRepository.findOne({
+      relations:['posts'],
+      where:{ id}
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: number, updateUserDto: UpdateUserDto){
+    let user = this.userRepository.findOne({where:{id}});
+    return this.userRepository.update({id:updateUserDto.id},updateUserDto);
+    
   }
 
   remove(id: number) {
